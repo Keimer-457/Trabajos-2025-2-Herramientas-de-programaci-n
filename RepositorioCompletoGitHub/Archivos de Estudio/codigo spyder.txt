@@ -1,0 +1,19 @@
+import matplotlib
+matplotlib.use("Qt5Agg")
+
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+SYMBOL = "USDCOP=X"
+data = yf.download(SYMBOL, period="6mo", interval="1d", progress=False, auto_adjust=True)
+
+plt.style.use("dark_background")
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.plot(data.index, data["Close"], color="cyan", lw=2, label="USD → COP (TRM)")
+ax.set_title("TRM histórica USD → COP", color="white")
+ax.set_xlabel("Fecha", color="white")
+ax.set_ylabel("COP", color="white")
+ax.tick_params(colors="white")
+ax.legend(loc="upper left")
+
+plt.show()
